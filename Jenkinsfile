@@ -7,8 +7,9 @@ pipeline {
 
     stages {
         stage('Switch Branch'){
-            agent any
-            customWorkspace "${GOPATH}/src/dosec.cn/public"
+            agent any {
+                customWorkspace "${GOPATH}/src/dosec.cn/public"
+            }
             steps {
                 sh 'echo "step..-1.."$PWD'
             }
