@@ -9,7 +9,7 @@ pipeline {
         stage('Pre-build') {
             agent any
             steps {
-                sh '''
+                sh '''#!/bin/bash -x
                 echo "step..0.."$PWD
                 '''
             }
