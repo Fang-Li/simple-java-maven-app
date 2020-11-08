@@ -10,7 +10,6 @@ pipeline {
             agent any
             steps {
                 sh '''
-                echo "step..0.."$PWD
                 '''
             }
         }
