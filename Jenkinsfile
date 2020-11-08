@@ -14,8 +14,11 @@ pipeline {
                 }
             }
             steps {
-                sh 'echo "step..-1.."$PWD'
-                sh 'echo "branch="$BRANCH_NAME'
+                if (env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'simu') {
+                    echo 'I only execute on the master branch'
+                } else {
+                    echo 'I execute elsewhere'
+                }
             }
 
         }
