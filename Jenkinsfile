@@ -15,6 +15,7 @@ pipeline {
             }
             steps {
                 sh 'echo "step..-1.."$PWD'
+                sh 'echo "branch="$BRANCH_NAME'
             }
 
         }
