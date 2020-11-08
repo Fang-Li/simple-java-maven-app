@@ -1,7 +1,7 @@
 pipeline {
     agent none
     environment {
-        GOPATH = '/home/lif/repo/dev'
+        GOPATH = '/var/jenkins_home/go'
     }
 
     stages {
