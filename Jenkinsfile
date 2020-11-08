@@ -14,10 +14,12 @@ pipeline {
                 }
             }
             steps {
-                if (env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'simu') {
-                    echo 'I only execute on the master branch'
-                } else {
-                    echo 'I execute elsewhere'
+                script {
+                    if (env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'simu') {
+                        echo 'I only execute on the master branch'
+                    } else {
+                        echo 'I execute elsewhere'
+                    }
                 }
             }
 
