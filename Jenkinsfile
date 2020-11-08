@@ -1,4 +1,8 @@
 pipeline {
+    node {
+        checkout scm
+        /* .. snip .. */
+    }
     agent none
     environment {
         GOPATH = '/var/jenkins_home/go'
