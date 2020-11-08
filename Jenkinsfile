@@ -7,7 +7,7 @@ pipeline {
 
     stages {
         stage('Switch Branch'){
-            agent any {
+            agent {
                 customWorkspace "${GOPATH}/src/dosec.cn/public"
             }
             steps {
