@@ -1,8 +1,5 @@
 pipeline {
-    node {
-        checkout scm
-        /* .. snip .. */
-    }
+
     agent none
     environment {
         GOPATH = '/var/jenkins_home/go'
@@ -13,6 +10,7 @@ pipeline {
         stage('Pre-build') {
             agent any
             steps {
+                sh 'env'
                 sh '''#!/bin/bash -x
                 echo "step..0.."$PWD
                 '''
