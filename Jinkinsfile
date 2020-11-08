@@ -1,14 +1,34 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3-alpine' 
-            args '-v /root/.m2:/root/.m2' 
-        }
+    agent none
+    environment {
+        GOPATH = '/home/lif/repo/dev'
     }
+
     stages {
-        stage('Build') { 
+
+        stage('Pre-build') {
+            agent any
             steps {
-                sh 'mvn -B -DskipTests clean package' 
+                sh '''
+                '''
+            }
+        }
+
+        stage('Build code') {
+            agent {
+                docker {
+                    image 'golang:1.12.5-dosec'
+                    customWorkspace "${GOPATH}/src/dosec.cn/hades"
+                }
+            }
+            steps {
+                sh '''#!/bin/bash -x
+                if [[ $BRANCH_NAME == "develop" ]];then
+                    make build-dev
+                else
+                    make build-release
+                fi
+                '''
             }
         }
     }
