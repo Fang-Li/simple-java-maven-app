@@ -6,12 +6,12 @@ pipeline {
     }
 
     stages {
-        stage('Switch Branch'){
+        stage('Switch public'){
             agent {
                 node {
-                        label 'master'
-                        customWorkspace "${GOPATH}/src/dosec.cn/public"
-                    }
+                    label 'master'
+                    customWorkspace "${GOPATH}/src/dosec.cn/public"
+                }
             }
             steps {
                 sh 'echo "step..-1.."$PWD'
@@ -43,5 +43,11 @@ pipeline {
                 '''
             }
         }
+
+         stage('Build image and Deploy') {
+                    agent any
+                    steps {
+                        sh 'echo "step..3.."$PWD'
+                    }
     }
 }
