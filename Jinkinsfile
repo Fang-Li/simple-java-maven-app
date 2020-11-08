@@ -17,7 +17,7 @@ pipeline {
         stage('Build code') {
             agent {
                 docker {
-                    image 'golang:1.12.5-dosec'
+                    image 'hub.dosec.cn/library/golang:1.12.5-dosec'
                     customWorkspace "${GOPATH}/src/dosec.cn/hades"
                 }
             }
