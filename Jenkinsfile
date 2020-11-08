@@ -9,7 +9,7 @@ pipeline {
         stage('Switch Branch'){
             agent {
                 node {
-                        label 'my-defined-label'
+                        label 'master'
                         customWorkspace "${GOPATH}/src/dosec.cn/public"
                     }
             }
