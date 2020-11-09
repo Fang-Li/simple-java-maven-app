@@ -13,15 +13,22 @@ pipeline {
                     customWorkspace "${GOPATH}/src/dosec.cn/public"
                 }
             }
-            steps {
-                script {
-                    if (env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'simu') {
-                        echo 'I only execute on the master branch'
-                    } else {
-                        echo 'I execute elsewhere'
-                    }
-                }
-            }
+            script {
+               try {
+                   checkout([
+                           $class: 'GitSCM',
+                           branches: [[name: $BRANCH_NAME]],
+                           userRemoteConfigs: [[url: 'https://github.com/Fang-Li/jenkins.git']]
+                   ])
+               }
+               catch (Exception e) {
+                   checkout([
+                           $class: 'GitSCM',
+                           branches: [[name: 'develop']],
+                           userRemoteConfigs: [[url: 'https://github.com/Fang-Li/jenkins.git']]
+                   ])
+               }
+           }
 
         }
 
