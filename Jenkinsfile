@@ -22,7 +22,7 @@ pipeline {
               echo "step..-1.."$PWD
               '''
               script {
-                echo "branch_name="$BRANCH_NAME
+                //echo "branch_name="$BRANCH_NAME
                 echo "branch_name2="env.BRANCH_NAME
                 try {
                     checkout([
