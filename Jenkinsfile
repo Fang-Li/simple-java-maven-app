@@ -25,14 +25,17 @@ pipeline {
                 //echo "branch_name="$BRANCH_NAME
                 //echo "branch_name2="env.BRANCH_NAME
                 echo "$env"
+
                 try {
+                    echo 'Pulling...' + env.BRANCH_NAME
                     checkout([
                             $class: 'GitSCM',
-                            branches: [[name: $BRANCH_NAME]],
+                            branches: [[name: env.BRANCH_NAME]],
                             userRemoteConfigs: [[url: 'https://github.com/Fang-Li/jenkins.git']]
                     ])
                 }
                 catch (Exception e) {
+                    echo 'Pulling...' + "develop"
                     checkout([
                             $class: 'GitSCM',
                             branches: [[name: 'develop']],
