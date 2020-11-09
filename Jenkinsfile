@@ -10,7 +10,7 @@ pipeline {
             agent {
                 node {
                     label 'master'
-                    customWorkspace "${GOPATH}/src/dosec.cn/public"
+                    customWorkspace "${GOPATH}/src/dosec.cn/jenkins"
                 }
             }
             script {
