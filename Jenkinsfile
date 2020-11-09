@@ -13,23 +13,24 @@ pipeline {
                     customWorkspace "${GOPATH}/src/dosec.cn/jenkins"
                 }
             }
-            script {
-               try {
-                   checkout([
-                           $class: 'GitSCM',
-                           branches: [[name: $BRANCH_NAME]],
-                           userRemoteConfigs: [[url: 'https://github.com/Fang-Li/jenkins.git']]
-                   ])
+            steps {
+                script {
+                   try {
+                       checkout([
+                               $class: 'GitSCM',
+                               branches: [[name: $BRANCH_NAME]],
+                               userRemoteConfigs: [[url: 'https://github.com/Fang-Li/jenkins.git']]
+                       ])
+                   }
+                   catch (Exception e) {
+                       checkout([
+                               $class: 'GitSCM',
+                               branches: [[name: 'develop']],
+                               userRemoteConfigs: [[url: 'https://github.com/Fang-Li/jenkins.git']]
+                       ])
+                   }
                }
-               catch (Exception e) {
-                   checkout([
-                           $class: 'GitSCM',
-                           branches: [[name: 'develop']],
-                           userRemoteConfigs: [[url: 'https://github.com/Fang-Li/jenkins.git']]
-                   ])
-               }
-           }
-
+            }
         }
 
         stage('Pre-build') {
