@@ -38,6 +38,9 @@ pipeline {
 
         stage('Pre-build') {
             agent any
+            options {
+              skipDefaultCheckout true
+            }
             steps {
                 sh 'env'
                 sh '''#!/bin/bash -x
@@ -47,6 +50,9 @@ pipeline {
         }
 
         stage('Build code') {
+            options {
+              skipDefaultCheckout true
+            }
             agent {
                 docker {
                     image 'hub.dosec.cn/library/golang:1.12.5-dosec'
@@ -61,10 +67,13 @@ pipeline {
         }
 
          stage('Build image and Deploy') {
-                    agent any
-                    steps {
-                        sh 'echo "step..3.."$PWD'
-                    }
+            agent any
+            options {
+              skipDefaultCheckout true
+            }
+            steps {
+                sh 'echo "step..3.."$PWD'
+            }
          }
     }
 }
