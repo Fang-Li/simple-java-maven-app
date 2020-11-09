@@ -17,22 +17,26 @@ pipeline {
                     skipDefaultCheckout true
                 }
             steps {
-                script {
-                   try {
-                       checkout([
-                               $class: 'GitSCM',
-                               branches: [[name: $BRANCH_NAME]],
-                               userRemoteConfigs: [[url: 'https://github.com/Fang-Li/jenkins.git']]
-                       ])
-                   }
-                   catch (Exception e) {
-                       checkout([
-                               $class: 'GitSCM',
-                               branches: [[name: 'develop']],
-                               userRemoteConfigs: [[url: 'https://github.com/Fang-Li/jenkins.git']]
-                       ])
-                   }
-               }
+              sh 'env'
+              sh '''#!/bin/bash -x
+              echo "step..-1.."$PWD
+              '''
+              script {
+                try {
+                    checkout([
+                            $class: 'GitSCM',
+                            branches: [[name: $BRANCH_NAME]],
+                            userRemoteConfigs: [[url: 'https://github.com/Fang-Li/jenkins.git']]
+                    ])
+                }
+                catch (Exception e) {
+                    checkout([
+                            $class: 'GitSCM',
+                            branches: [[name: 'develop']],
+                            userRemoteConfigs: [[url: 'https://github.com/Fang-Li/jenkins.git']]
+                    ])
+                }
+              }
             }
         }
 
