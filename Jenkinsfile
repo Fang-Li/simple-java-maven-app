@@ -23,7 +23,8 @@ pipeline {
               '''
               script {
                 //echo "branch_name="$BRANCH_NAME
-                echo "branch_name2="env.BRANCH_NAME
+                //echo "branch_name2="env.BRANCH_NAME
+                echo "$env"
                 try {
                     checkout([
                             $class: 'GitSCM',
