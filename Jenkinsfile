@@ -7,7 +7,15 @@ pipeline {
 
     stages {
         stage('Switch public'){
-            agent any
+            agent {
+                node {
+                    label 'master'
+                    customWorkspace "${GOPATH}/src/dosec.cn/jenkins"
+                }
+            }
+            options {
+                    skipDefaultCheckout true
+                }
             steps {
                 script {
                    try {
