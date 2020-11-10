@@ -13,6 +13,10 @@ pipeline {
                     customWorkspace "${GOPATH}/src/dosec.cn/jenkins"
                 }
             }
+           environment {
+                BRANCH = "develop"
+                COMMIT = "c89e9412cb1c659e54899855cad8f46f69dcba6a"
+           }
             options {
                     skipDefaultCheckout true
                 }
@@ -30,7 +34,7 @@ pipeline {
                     echo 'Pulling...' + env.BRANCH_NAME
                     checkout([
                             $class: 'GitSCM',
-                            branches: [[name: 'c89e9412cb1c659e54899855cad8f46f69dcba6a']],
+                            branches: [[name: if (env.COMMIT=="") {env.BRANCH_NAME} else {env.COMMIT} ]],
                             extensions: [[$class: 'LocalBranch'],[$class: 'PruneStaleBranch']],
                             userRemoteConfigs: [[url: 'https://github.com/Fang-Li/jenkins.git']]
                     ])
