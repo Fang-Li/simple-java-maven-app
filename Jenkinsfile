@@ -32,9 +32,9 @@ pipeline {
 
                 try {
                     echo 'Pulling...' + env.BRANCH_NAME
-                    echo env.BRANCH + env.COMMIT
-                    BC=(env.COMMIT ? env.COMMIT : env.BRANCH)
-                    echo $BC
+                    echo 'branch...' + env.BRANCH
+                    echo 'commit...' + env.COMMIT
+                    echo 'bc...' + (("${env.COMMIT}" == null) ? env.COMMIT : env.BRANCH)
                     checkout([
                             $class: 'GitSCM',
                             branches: [[name: (env.COMMIT ? env.COMMIT : env.BRANCH )]],
