@@ -34,7 +34,7 @@ pipeline {
                     echo 'Pulling...' + env.BRANCH_NAME
                     checkout([
                             $class: 'GitSCM',
-                            branches: [[name: if (env.COMMIT=="") {env.BRANCH_NAME} else {env.COMMIT} ]],
+                            branches: [[name: ((env.COMMIT=="") ? env.BRANCH : env.COMMIT )]],
                             extensions: [[$class: 'LocalBranch'],[$class: 'PruneStaleBranch']],
                             userRemoteConfigs: [[url: 'https://github.com/Fang-Li/jenkins.git']]
                     ])
