@@ -31,7 +31,7 @@ pipeline {
                     checkout([
                             $class: 'GitSCM',
                             branches: [[name: env.BRANCH_NAME]],
-                            extensions: [[$class: 'CleanCheckout']],
+                            extensions: scm.extensions + [[$class: 'CleanCheckout']],
                             userRemoteConfigs: [[url: 'https://github.com/Fang-Li/jenkins.git']]
                     ])
                 }
@@ -40,7 +40,7 @@ pipeline {
                     checkout([
                             $class: 'GitSCM',
                             branches: [[name: 'develop']],
-                            extensions: [[$class: 'CleanCheckout']],
+                            extensions: scm.extensions + [[$class: 'CleanCheckout']],
                             userRemoteConfigs: [[url: 'https://github.com/Fang-Li/jenkins.git']]
                     ])
                 }
