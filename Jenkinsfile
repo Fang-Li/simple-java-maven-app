@@ -31,7 +31,7 @@ pipeline {
                     checkout([
                             $class: 'GitSCM',
                             branches: [[name: env.BRANCH_NAME]],
-                            extensions: [[$class: 'LocalBranch'],[$class: 'PruneStaleBranch'],
+                            extensions: [[$class: 'LocalBranch'],[$class: 'PruneStaleBranch']],
                             userRemoteConfigs: [[url: 'https://github.com/Fang-Li/jenkins.git']]
                     ])
                 }
@@ -40,7 +40,7 @@ pipeline {
                     checkout([
                             $class: 'GitSCM',
                             branches: [[name: 'develop']],
-                            extensions: [[$class: 'LocalBranch'],[$class: 'PruneStaleBranch'],
+                            extensions: [[$class: 'LocalBranch'],[$class: 'PruneStaleBranch']],
                             userRemoteConfigs: [[url: 'https://github.com/Fang-Li/jenkins.git']]
                     ])
                 }
