@@ -14,7 +14,7 @@ pipeline {
                 }
             }
            environment {
-                BRANCH = "develop"
+                BRANCH = 'develop'
                 COMMIT = ""
            }
             options {
@@ -40,6 +40,7 @@ pipeline {
                     ])
                 }
                 catch (Exception e) {
+                    echo e
                     echo 'Pulling...' + "develop"
                     checkout([
                             $class: 'GitSCM',
