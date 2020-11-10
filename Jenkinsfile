@@ -15,7 +15,7 @@ pipeline {
             }
            environment {
                 BRANCH = 'master'
-                COMMIT = ''
+                COMMIT = '48a2914a'
            }
             options {
                     skipDefaultCheckout true
