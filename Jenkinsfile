@@ -15,7 +15,7 @@ pipeline {
             }
            environment {
                 BRANCH = "develop"
-                COMMIT = "c89e9412cb1c659e54899855cad8f46f69dcba6a"
+                COMMIT = ""
            }
             options {
                     skipDefaultCheckout true
