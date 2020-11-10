@@ -30,7 +30,7 @@ pipeline {
                     echo 'Pulling...' + env.BRANCH_NAME
                     checkout([
                             $class: 'GitSCM',
-                            branches: [[name: env.BRANCH_NAME]],
+                            branches: [[name: 'c89e9412cb1c659e54899855cad8f46f69dcba6a']],
                             extensions: [[$class: 'LocalBranch'],[$class: 'PruneStaleBranch']],
                             userRemoteConfigs: [[url: 'https://github.com/Fang-Li/jenkins.git']]
                     ])
