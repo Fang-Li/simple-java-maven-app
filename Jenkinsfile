@@ -14,7 +14,7 @@ pipeline {
                 }
             }
            environment {
-                BRANCH = 'develop'
+                BRANCH = 'master'
                 COMMIT = ''
            }
             options {
