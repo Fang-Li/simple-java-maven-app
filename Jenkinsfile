@@ -28,11 +28,10 @@ pipeline {
 
                 try {
                     echo 'Pulling...' + env.BRANCH_NAME
-                    echo "branches..." scm.branches
                     checkout([
                             $class: 'GitSCM',
-                            branches: scm.branches,
-                            extensions: scm.extensions + [[$class: 'CleanCheckout']],
+                            branches: [[name: env.BRANCH_NAME]],
+                            extensions: [[$class: 'LocalBranch']],
                             userRemoteConfigs: [[url: 'https://github.com/Fang-Li/jenkins.git']]
                     ])
                 }
@@ -41,7 +40,7 @@ pipeline {
                     checkout([
                             $class: 'GitSCM',
                             branches: [[name: 'develop']],
-                            extensions: scm.extensions + [[$class: 'CleanCheckout']],
+                            extensions: [[$class: 'LocalBranch']],
                             userRemoteConfigs: [[url: 'https://github.com/Fang-Li/jenkins.git']]
                     ])
                 }
