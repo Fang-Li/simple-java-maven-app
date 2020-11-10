@@ -15,7 +15,7 @@ pipeline {
             }
            environment {
                 BRANCH = 'develop'
-                COMMIT = ""
+                COMMIT = ''
            }
             options {
                     skipDefaultCheckout true
@@ -32,7 +32,7 @@ pipeline {
 
                 try {
                     echo 'Pulling...' + env.BRANCH_NAME
-                    echo env.BRANCH env.COMMIT
+                    echo env.BRANCH + env.COMMIT
                     BC=(env.COMMIT ? env.COMMIT : env.BRANCH)
                     echo $BC
                     checkout([
